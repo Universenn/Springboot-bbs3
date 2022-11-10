@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.util.List;
 import java.util.Optional;
 
 @Controller
@@ -24,11 +25,18 @@ public class ArticleController {
         this.articleRepository = articleRepository;
     }
 
+    @GetMapping("")
+    public String listPage(Model model) {
+        List<Article> articles = articleRepository.findAll();
+        model.addAttribute("articles", articles);
+        return "list";
+    }
 
     @GetMapping("/new")
     public String createPage() {
         return "/articles/new";
     }
+
 
     @GetMapping("/{id}")
     public String showSingle(@PathVariable Long id, Model model) {

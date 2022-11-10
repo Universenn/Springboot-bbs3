@@ -1,3 +1,28 @@
-{{#article}}
-    {{id}} {{title}} {{content}}
-{{/article}}
+{{>layouts/header}}
+    <table class="table table-striped-columns">
+        <thead>
+        <tr>
+            <th scope="col">Id</th>
+            <th scope="col">Title</th>
+            <th scope="col">Content</th>
+        </tr>
+        </thead>
+        <tbody>
+        {{#article}}
+            <tr>
+                <th scope="row">{{id}}</th>
+                <td>{{title}}</td>
+                <td>{{content}}</td>
+            </tr>
+        {{/article}}
+        </tbody>
+    </table>
+
+<a href="/articles/{{id}}/edit" class="btn btn-primary">Edit</a>
+<a href="/articles/{{id}}/delete" class="btn btn-danger">Delete</a>
+
+<div class="card-body">
+    <a href="/articles/new" class="card-link">new article</a>
+    <a href="/articles" class="card-link">list article</a>
+</div>
+{{>layouts/footer}}
